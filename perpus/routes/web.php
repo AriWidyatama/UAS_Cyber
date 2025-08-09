@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BukuController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+
+// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::resource('kategoris', KategoriController::class);
+
+// Route::get('/admin/kategoris', function () {
+//     return view('admin.kategoris.index');
+// });
+// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Route::resource('kategoris', KategoriController::class);
+// Route::prefix('admin')->group(function () {
+//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+//     Route::resource('/kategoris', KategoriController::class);
+// });
+
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::resource('kategoris', KategoriController::class);
+
+Route::resource('bukus', BukuController::class);
