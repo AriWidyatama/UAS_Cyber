@@ -19,23 +19,6 @@ Route::get('/', function () {
 });
 
 
-
-
-
-// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-// Route::resource('kategoris', KategoriController::class);
-
-// Route::get('/admin/kategoris', function () {
-//     return view('admin.kategoris.index');
-// });
-// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-// Route::resource('kategoris', KategoriController::class);
-// Route::prefix('admin')->group(function () {
-//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-//     Route::resource('/kategoris', KategoriController::class);
-// });
-
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 // Route::resource('kategoris', KategoriController::class);
 
