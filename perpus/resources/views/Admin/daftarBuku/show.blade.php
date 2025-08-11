@@ -28,7 +28,7 @@
                         
                         <tr>
                             <th>Deskripsi</th>
-                            <td>{{ $buku->description }}</td>
+                            <td>{!! $buku->description !!}</td>
                         </tr>
                         <tr>
                             <th>Penulis</th>
@@ -62,7 +62,7 @@
                         </tr>
                         <tr>
                             <th>Update</th>
-                            <td>{{ $buku->update_at }}</td>
+                            <td>{{ $buku->updated_at }}</td>
                         </tr>
                     </table>
                 </div>

@@ -24,7 +24,6 @@ use App\Http\Controllers\ProfileController;
 
 // Route::resource('bukus', BukuController::class);
 
-// =======
 // -------------------
 // HALAMAN FORM LOGIN & REGISTER
 // -------------------
@@ -42,20 +41,16 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 // -------------------
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
+// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// // Route::resource('kategoris', KategoriController::class);
+
+// Route::resource('bukus', BukuController::class);
+
+
 // -------------------
 // HALAMAN DASHBOARD SESUAI ROLE
 // -------------------
-// Route::middleware('auth')->group(function () {
-//     Route::get('/admin', function () {
-//         return view('admin.index');
-//     })->name('admin.index');
-
-//     // Route::get('/user', function () {
-//     //     return view('user.index');
-//     // })->name('user.index');
-//     // Route::get('/user/dashboard', [UserBukuController::class, 'daftarBukuUser'])->name('user.dashboard');
-// });
-
 /*
 |--------------------------------------------------------------------------
 | ADMIN ROUTES
@@ -86,3 +81,17 @@ Route::middleware(['auth', 'checkRole:user'])->group(function () {
     Route::get('/user/profil/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
     Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.profil.update');
 });
+
+//=======
+Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('bukus', BukuController::class);
+});
+
+// Route::middleware(['auth', 'checkRole:user'])->group(function () {
+//     Route::get('/user/dashboard', [DashboardController::class, 'userIndex'])->name('user.dashboard');
+// });
+
+// Route::get('/dashboard', function () {
+//     return 'Halaman Dashboard';
+// })->middleware('cekrole:admin,user');

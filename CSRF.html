@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Palsu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #f7fafc;
+            font-family: 'Inter', sans-serif;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .form-control {
+            border-color: #e2e8f0;
+            transition: border-color 0.2s;
+        }
+        .form-control:focus {
+            border-color: #4a5568;
+            box-shadow: 0 0 0 1px #4a5568;
+        }
+        .btn-primary {
+            background-color: #4a5568;
+            border-color: #4a5568;
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #2d3748;
+        }
+        .btn-secondary {
+            background-color: #edf2f7;
+            border-color: #edf2f7;
+            color: #4a5568;
+            transition: background-color 0.2s;
+        }
+        .btn-secondary:hover {
+            background-color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+<div class="container mx-auto p-4 max-w-2xl">
+    <h2 class="my-4 text-center text-3xl font-bold text-gray-800">Form Palsu CSRF</h2>
+    
+    <div class="card p-8">
+        <!-- <form action="http://127.0.0.1:8000/bukus" method="POST" enctype="multipart/form-data"> -->
+        <form action="http://localhost:5000/submit-product" method="POST" enctype="multipart/form-data">
+
+            
+            <div class="mb-5">
+                <label for="judul_buku" class="block text-sm font-medium text-gray-700 mb-1">Judul Buku</label>
+                <input type="text" name="judul_buku" id="judul_buku" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-gray-500 focus:border-gray-500" placeholder="Masukkan judul buku" required>
+            </div>
+
+            <div class="mb-5">
+                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi (opsional)</label>
+                <textarea name="description" id="description" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm" rows="4" placeholder="Deskripsi singkat buku"></textarea>
+            </div>
+
+            <div class="mb-5">
+                <label for="penulis" class="block text-sm font-medium text-gray-700 mb-1">Penulis</label>
+                <input type="text" name="penulis" id="penulis" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Masukkan nama penulis" required>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="mb-5">
+                    <label for="tahun_terbit" class="block text-sm font-medium text-gray-700 mb-1">Tahun Terbit</label>
+                    <input type="number" name="tahun_terbit" id="tahun_terbit" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Tahun" min="1900" max="{{ date('Y') }}" required>
+                </div>
+
+                <div class="mb-5">
+                    <label for="jumlah_buku" class="block text-sm font-medium text-gray-700 mb-1">Jumlah Buku</label>
+                    <input type="number" name="jumlah_buku" id="jumlah_buku" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Jumlah" min="1" required>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <label for="gambar" class="block text-sm font-medium text-gray-700 mb-1">Gambar Buku</label>
+                <input type="file" name="gambar" id="gambar" class="form-control mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100" accept="image/*">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="mb-5">
+                    <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
+                    <select name="category" id="category" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm" required>
+                        <option value="" disabled selected>Pilih Kategori</option>
+                        <option value="Novel">Novel</option>
+                        <option value="Komik">Komik</option>
+                        <option value="Majalah">Majalah</option>
+                        <option value="Berita">Berita</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="mb-5">
+                    <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                    <select name="status" id="status" class="form-control mt-1 block w-full rounded-md border-gray-300 shadow-sm" required>
+                        <option value="available">Tersedia</option>
+                        <option value="unavailable">Tidak Tersedia</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="flex justify-end gap-3 mt-8">
+                <a href="{{ route('bukus.index') }}" class="btn btn-secondary inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm">
+                    <i class="fa fa-arrow-left mr-2"></i> Kembali
+                </a>
+                <button type="submit" class="btn btn-primary inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white shadow-sm">
+                    <i class="fa fa-save mr-2"></i> Simpan Data
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

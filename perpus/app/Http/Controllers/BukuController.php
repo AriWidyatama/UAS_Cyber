@@ -84,7 +84,7 @@ class BukuController extends Controller
             'penulis' => 'required|string|max:255',
             'tahun_terbit' => 'required|integer|min:1900|max:' . date('Y'),
             'jumlah_buku' => 'required|integer|min:1',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category' => 'required|string',
             'status' => 'required|in:available,unavailable',
         ]);

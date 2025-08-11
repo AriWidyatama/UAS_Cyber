@@ -19,11 +19,18 @@ class CheckRole
     // {
     //     return $next($request);
     // }
-    public function handle($request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, $role)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login.form');
+        }
+
         if (Auth::check() && Auth::user()->akses === $role) {
             return $next($request);
         }
-        abort(403, 'Unauthorized');
+
+        if (Auth::user()->role !== $role) {
+            abort(403, 'Akses ditolak');
+        }
     }
 }

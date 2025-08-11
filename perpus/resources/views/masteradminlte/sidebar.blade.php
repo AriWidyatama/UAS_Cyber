@@ -55,46 +55,22 @@
       </li>
 
       <li class="nav-item">
-    <a href="#" class="nav-link" 
-       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <i class="nav-icon fas fa-sign-out-alt"></i>
-        <p>LogOut</p>
-    </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
-            @csrf
-        </form>
-    </li>
-
-
-
-
-      {{-- <li class="nav-item">
-          <form action="{{ route('logout') }}" method="POST" style="margin:0;">
-              @csrf
-              <button type="submit" class="nav-link" style="background:none; border:none; padding:0; display:flex; align-items:center; width:100%; text-align:left; color:inherit;">
-                  <i class="nav-icon fas fa-sign-out-alt"></i>
-                  <p>LogOut</p>
-              </button>
-          </form>
-      </li> --}}
-
-
-
-      {{-- <li class="nav-item">
-        <a href="#" class="nav-link" id="logout-link">
+        <a href="{{ route('logout') }}" class="nav-link" id="logout-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>LogOut</p>
         </a>
-    </li> --}}
-    
+    </li>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
     <script>
         document.getElementById('logout-link').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent the default link behavior
             document.getElementById('logout-form').submit(); // Submit the form
         });
     </script>
-    
-
     </ul>
   </nav>
 
