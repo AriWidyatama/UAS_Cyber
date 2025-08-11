@@ -54,46 +54,22 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link" id="logout-link">
+        <a href="{{ route('logout') }}" class="nav-link" id="logout-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>LogOut</p>
         </a>
     </li>
-    
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
     <script>
         document.getElementById('logout-link').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent the default link behavior
             document.getElementById('logout-form').submit(); // Submit the form
         });
     </script>
-    
-    {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form> --}} 
-    {{-- baru --}}
-    
-
-      {{-- <li class="nav-item">
-        <form action="{{ route('logout') }}" method="POST" id="logout-form">
-            @csrf
-            <button type="submit" class="nav-link" style="background: none; border: none; color: inherit; cursor: pointer;">
-                <i class="nav-icon fas fa-sign-out-alt"></i>
-                <p>LogOut</p>
-            </button>
-        </form>
-    </li> --}}
-    
-      {{-- <li class="nav-item">
-        <a href="/" class="nav-link ">
-            <i class="far fa-circle nav-icon"></i>
-            <p>LogOut</p>
-        </a>
-    </li> --}}
-      {{-- <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
-        @csrf
-        @method('DELETE')
-        <button class="btn btn-danger" type="submit">Log Out</button>
-    </form> --}}
 
     </ul>
   </nav>

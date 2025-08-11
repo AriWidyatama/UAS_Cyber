@@ -78,8 +78,8 @@
             <!-- Tombol Aksi -->
             <div class="form-group row">
                 <div class="offset-sm-0 col-sm-10">  
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
                     <a href="{{ route('bukus.index') }}" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Kembali</a>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan Data</button>
                 </div>
             </div>
         </form>
