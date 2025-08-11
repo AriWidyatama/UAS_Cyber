@@ -10,6 +10,45 @@
         </a>
     </div>
 
+    <form method="GET" class="mb-4">
+    <div class="row g-2 align-items-center">
+        <!-- Search -->
+        <div class="col-md-5">
+            <input type="text" name="search" class="form-control" 
+                   placeholder="Cari buku..." value="{{ request('search') }}">
+        </div>
+
+        <!-- Category -->
+        <div class="col-md-3">
+            <select name="category" class="form-control">
+                <option value="">Semua Kategori</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category }}" {{ request('category') == $category ? 'selected' : '' }}>
+                        {{ $category }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <!-- Status -->
+        <div class="col-md-2">
+            <select name="status" class="form-control">
+                <option value="">Semua Status</option>
+                <option value="available" {{ request('status') == 'available' ? 'selected' : '' }}>Aktif</option>
+                <option value="unavailable" {{ request('status') == 'unavailable' ? 'selected' : '' }}>Tidak Aktif</option>
+            </select>
+        </div>
+
+        <!-- Button -->
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-outline-primary w-100">
+                <i class="fas fa-search"></i> Filter
+            </button>
+        </div>
+    </div>
+</form>
+
+
     <div class="card shadow-sm">
         <div class="card-body p-0">
             <div class="table-responsive">

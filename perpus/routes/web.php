@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\UserBukuController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +18,11 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Route::resource('kategoris', KategoriController::class);
+
+// Route::resource('bukus', BukuController::class);
 
 // -------------------
 // HALAMAN FORM LOGIN & REGISTER
@@ -43,6 +51,38 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // -------------------
 // HALAMAN DASHBOARD SESUAI ROLE
 // -------------------
+/*
+|--------------------------------------------------------------------------
+| ADMIN ROUTES
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::resource('/admin/bukus', BukuController::class);
+
+    // Profile
+         // Tampilkan profil
+    Route::get('/admin/profil', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/admin/profil/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/admin/profil', [ProfileController::class, 'update'])->name('profile.update');
+});
+/*
+|--------------------------------------------------------------------------
+| USER ROUTES
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'checkRole:user'])->group(function () {
+    Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+    // Route::get('/user/bukus', [UserBukuController::class, 'index'])->name('user.bukus.index');
+    Route::get('/user/buku/{id}', [UserBukuController::class, 'show'])->name('user.bukus.show');
+
+    // Profile
+    Route::get('/user/profil', [ProfileController::class, 'show'])->name('user.profil.show');
+    Route::get('/user/profil/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
+    Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.profil.update');
+});
+
+//=======
 Route::middleware(['auth', 'checkRole:admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('bukus', BukuController::class);

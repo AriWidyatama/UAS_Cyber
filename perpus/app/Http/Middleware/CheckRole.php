@@ -15,6 +15,10 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
+    // public function handle(Request $request, Closure $next)
+    // {
+    //     return $next($request);
+    // }
     public function handle(Request $request, Closure $next, $role)
     {
         if (!Auth::check()) {
@@ -28,7 +32,5 @@ class CheckRole
         if (Auth::user()->role !== $role) {
             abort(403, 'Akses ditolak');
         }
-
-        return $next($request);
     }
 }

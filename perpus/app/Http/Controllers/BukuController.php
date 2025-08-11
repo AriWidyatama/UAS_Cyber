@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Buku;
-use App\Models\Kategori;
+// use App\Models\Kategori;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,13 +15,45 @@ class BukuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bukus = Buku::all(); // Mengambil semua data buku
-        return view('admin.daftarBuku.index', compact('bukus'));
+        // $bukus = Buku::all(); // Mengambil semua data buku
+        // return view('admin.daftarBuku.index', compact('bukus'));
         // $bukus = Buku::with('kategori')->get();
         // return view('admin.daftarBuku.index', compact('bukus'));
         // $bukus = Buku::all();
+        
+    $query = Buku::query();
+
+    // Search (judul, penulis, kategori)
+    if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('judul_buku', 'like', "%{$search}%")
+              ->orWhere('penulis', 'like', "%{$search}%")
+              ->orWhere('category', 'like', "%{$search}%");
+        });
+    }
+
+    // Filter kategori
+    if ($request->filled('category')) {
+        $query->where('category', $request->category);
+    }
+
+    // Filter status (available/unavailable)
+    if ($request->filled('status')) {
+        $query->where('status', $request->status);
+    }
+
+    // Ambil data + pagination
+    $bukus = $query->latest()->paginate(10);
+    $bukus->appends($request->query());
+
+    // Ambil semua kategori untuk dropdown
+    $categories = Buku::distinct()->pluck('category');
+
+    return view('admin.daftarBuku.index', compact('bukus', 'categories'));
+
     }
 
     /**

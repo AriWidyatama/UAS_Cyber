@@ -80,9 +80,13 @@ class AuthController extends Controller
             Auth::loginUsingId($user->id);
 
             if ($user->akses === 'admin') {
-                return redirect()->route('bukus.index');
+                //return redirect()->route('admin.index');
+                // return redirect()->route('bukus.index');
+                return redirect()->route('admin.dashboard');
             } else {
-                return view('user.index');
+                //return redirect()->route('user.index');
+                // return view('user.index');
+                return redirect()->route('user.dashboard');
             }
         }
         // $credentials = $request->only('username', 'password');
