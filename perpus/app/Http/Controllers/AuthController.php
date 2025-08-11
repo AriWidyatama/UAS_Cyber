@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -68,19 +69,35 @@ class AuthController extends Controller
                 ->withInput();
         }
 
-        $credentials = $request->only('username', 'password');
+        // 
+        $username = $request->input('username');
+        $password = $request->input('password');
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+        // Query manual tanpa parameter binding, rentan SQL Injection!
+        $user = DB::selectOne("SELECT * FROM users WHERE username = '$username'");
+
+        if ($user && Hash::check($password, $user->password)) {
+            Auth::loginUsingId($user->id);
 
             if ($user->akses === 'admin') {
-                //return redirect()->route('admin.index');
-                return view('admin.index');
+                return redirect()->route('bukus.index');
             } else {
-                //return redirect()->route('user.index');
                 return view('user.index');
             }
         }
+        // $credentials = $request->only('username', 'password');
+
+        // if (Auth::attempt($credentials)) {
+        //     $user = Auth::user();
+
+        //     if ($user->akses === 'admin') {
+        //         //return redirect()->route('admin.index');
+        //         return view('admin.index');
+        //     } else {
+        //         //return redirect()->route('user.index');
+        //         return view('user.index');
+        //     }
+        // }
 
         return redirect()->back()->withErrors(['login' => 'Username atau password salah']);
     }
