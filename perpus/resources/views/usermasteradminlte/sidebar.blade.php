@@ -3,7 +3,7 @@
       <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
     </div>
     <div class="info">
-      <a href="#" class="d-block">Admin</a>
+      <a href="#" class="d-block">User</a>
     </div>
   </div>
 
@@ -13,7 +13,7 @@
       <li class="nav-header">MAIN MENU</li>
 
       <li class="nav-item">
-        <a href="{{ route('admin.dashboard') }}" class="nav-link">
+        <a href="{{ route('user.dashboard') }}" class="nav-link">
           <i class="nav-icon fas fa-tachometer-alt"></i>
           <p>Dashboard</p>
         </a>
@@ -26,12 +26,12 @@
         </a>
       </li> --}}
 
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a href="{{ route('bukus.index') }}" class="nav-link">
           <i class="nav-icon fas fa-book"></i>
           <p>Daftar Buku</p>
         </a>
-      </li>
+      </li> --}}
 
       {{-- <li class="nav-item">
         <a href="/admin/daftarAnggota" class="nav-link">
@@ -48,44 +48,24 @@
       </li> --}}
 
       <li class="nav-item">
-        <a href="/admin/profil" class="nav-link">
+        <a href="/user/profil" class="nav-link">
           <i class="nav-icon fas fa-user"></i>
           <p>Profil</p>
         </a>
       </li>
 
       <li class="nav-item">
-    <a href="#" class="nav-link" 
-       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <i class="nav-icon fas fa-sign-out-alt"></i>
-        <p>LogOut</p>
-    </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
-            @csrf
-        </form>
-    </li>
+          <a href="#" class="nav-link" 
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>LogOut</p>
+          </a>
 
-
-
-
-      {{-- <li class="nav-item">
-          <form action="{{ route('logout') }}" method="POST" style="margin:0;">
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
               @csrf
-              <button type="submit" class="nav-link" style="background:none; border:none; padding:0; display:flex; align-items:center; width:100%; text-align:left; color:inherit;">
-                  <i class="nav-icon fas fa-sign-out-alt"></i>
-                  <p>LogOut</p>
-              </button>
           </form>
-      </li> --}}
+      </li>
 
-
-
-      {{-- <li class="nav-item">
-        <a href="#" class="nav-link" id="logout-link">
-            <i class="nav-icon fas fa-sign-out-alt"></i>
-            <p>LogOut</p>
-        </a>
-    </li> --}}
     
     <script>
         document.getElementById('logout-link').addEventListener('click', function(event) {
@@ -94,6 +74,33 @@
         });
     </script>
     
+    {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form> --}} 
+    {{-- baru --}}
+    
+
+      {{-- <li class="nav-item">
+        <form action="{{ route('logout') }}" method="POST" id="logout-form">
+            @csrf
+            <button type="submit" class="nav-link" style="background: none; border: none; color: inherit; cursor: pointer;">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>LogOut</p>
+            </button>
+        </form>
+    </li> --}}
+    
+      {{-- <li class="nav-item">
+        <a href="/" class="nav-link ">
+            <i class="far fa-circle nav-icon"></i>
+            <p>LogOut</p>
+        </a>
+    </li> --}}
+      {{-- <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-danger" type="submit">Log Out</button>
+    </form> --}}
 
     </ul>
   </nav>

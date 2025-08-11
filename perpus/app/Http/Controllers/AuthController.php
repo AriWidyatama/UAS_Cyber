@@ -75,10 +75,12 @@ class AuthController extends Controller
 
             if ($user->akses === 'admin') {
                 //return redirect()->route('admin.index');
-                return view('admin.index');
+                // return view('admin.index');
+                return redirect()->route('admin.dashboard');
             } else {
                 //return redirect()->route('user.index');
-                return view('user.index');
+                // return view('user.index');
+                return redirect()->route('user.dashboard');
             }
         }
 
