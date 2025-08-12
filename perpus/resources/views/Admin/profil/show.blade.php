@@ -19,8 +19,9 @@
         <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
           @csrf
           @method('PUT')
-          <!-- input fields nama, username, email, image -->
-          <a href="{{ route('profile.edit') }}" class="btn btn-warning">Edit Profil</a>
+          <!-- route dengan id = route('profile.edit', $user->id)
+          route tanpa id = route('profile.edit') -->
+          <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-warning">Edit Profil</a>
       </form>
       </div>
     </div>

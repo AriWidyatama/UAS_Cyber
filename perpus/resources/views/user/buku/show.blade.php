@@ -28,7 +28,7 @@
                         
                         <tr>
                             <th>Deskripsi</th>
-                            <td>{{ $buku->description }}</td>
+                            <td>{!! $buku->description !!}</td>
                         </tr>
                         <tr>
                             <th>Penulis</th>

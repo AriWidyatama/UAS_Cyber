@@ -5,12 +5,12 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 
 # Laravel URLs
-FORM_URL = "http://127.0.0.1:8000/bukus/create"
-SUBMIT_URL = "http://127.0.0.1:8000/bukus"
+FORM_URL = "http://127.0.0.1:8000/admin/bukus/create"
+SUBMIT_URL = "http://127.0.0.1:8000/admin/bukus"
 
 # Cookie Laravel (ambil dari browser yang sudah login)
 COOKIES = {
-    'laravel_session': 'eyJpdiI6InpDNDBtTFhvbUIzS0NRNW5BeHJUU3c9PSIsInZhbHVlIjoiazlHM0x5MEQ0MG5vOWtQazI1bHNxaTZHZ0RWNXhYUE4zVDY2ZUFCcVlwMnhrS3dXcVBkQ0FkOHJHbnVBcmN2eGRMM0FnSS80aWZRUUN6WEltcmQzcGU5LzR6c2pWL05mMGc4cndZZnZKdmlwMFA0UXB2RGdjbnMxZkRKUFhCaE4iLCJtYWMiOiI2NGExZDIwZTc5ZDY0YTgwNDkyMDJiMTE2ZWM4NGUwZDBiZTBiZTczYThkNzI0NGE0ZTU3NGRjNTQ0NDJjODhiIiwidGFnIjoiIn0%3D'
+    'laravel_session': 'eyJpdiI6Ikc2ei9XSktXM0JRWTFuRXd0YlFlT2c9PSIsInZhbHVlIjoiMVZ5VzlCT3RnQXdPeFBRSHZtMDNlN2I1Q0ZNaXY4c25nMFRDS2I2WC9IRWZuNWYxemoxNzg4REtmeGF0ZzdFSEwrZUxML2R2QSs4WXRwcW5aQXVFSW5ScnI0MnE0ZjZrc0dtMVhZR29Ga1V1Y3dEWTlnbGZPOXU4aUpOVjQxdGciLCJtYWMiOiI1MWM5MzM2YzBmNDU5ODU4NmNhZjVkNDNhMGQ5OWVmMTk1ZjhjYWRiOWVlMGY5MzY0YTY3MzljM2Y3YjNlNWNiIiwidGFnIjoiIn0%3D'
 }
 
 @app.route("/submit-product", methods=["POST"])
