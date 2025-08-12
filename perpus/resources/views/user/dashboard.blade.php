@@ -80,7 +80,13 @@
                 </td>
                 <td>{{ $buku->judul_buku }}</td>
                 <td>{{ $buku->penulis }}</td>
-                <td><span class="badge badge-success">Tersedia</span></td>
+                <td>
+                    @if ($buku->status === 'available')
+                        <span class="badge badge-success">Tersedia</span>
+                    @else
+                        <span class="badge badge-danger">Tidak Tersedia</span>
+                    @endif
+                </td>
                 <td>{{ $buku->category }}</td>
                 <td class="text-center">
                   <a href="{{ route('user.bukus.show', $buku->id) }}" class="btn btn-info btn-sm">

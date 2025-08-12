@@ -20,14 +20,19 @@ class ProfileController extends Controller
         return view('user.profil.show', compact('user'));
     }
 
-    public function edit()
+    // public function edit()
+    // {
+    //     $user = Auth::user();
+
+    public function edit($id)
     {
-        $user = Auth::user();
+        $user = User::findOrFail($id);
         if ($user->akses === 'admin') {
             return view('admin.profil.edit', compact('user'));
         }
         return view('user.profil.edit', compact('user'));
     }
+
 
     public function update(Request $request)
     {

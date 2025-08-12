@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 
 # Konfigurasi Laravel endpoint
-FORM_URL = "http://127.0.0.1:8000/bukus/create"
-SUBMIT_URL = "http://127.0.0.1:8000/bukus"
+FORM_URL = "http://127.0.0.1:8000/admin/bukus/create"
+SUBMIT_URL = "http://127.0.0.1:8000/admin/bukus"
 
 @app.route("/submit-product", methods=["POST"])
 def submit_product():

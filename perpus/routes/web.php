@@ -18,12 +18,6 @@ use App\Http\Controllers\ProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-// Route::resource('kategoris', KategoriController::class);
-
-// Route::resource('bukus', BukuController::class);
-
 // -------------------
 // HALAMAN FORM LOGIN & REGISTER
 // -------------------
@@ -35,6 +29,13 @@ Route::get('/register', [AuthController::class, 'hal_regis'])->name('register.fo
 // -------------------
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+//Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1'); 
+
+// Route::middleware(['block.ip'])->group(function () {
+//     Route::post('/login', [AuthController::class, 'login'])->name('login');
+//     //Route::get('/some-protected-route', [SomeController::class, 'method']);
+// });
+
 
 // -------------------
 // LOGOUT
@@ -42,10 +43,21 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-// // Route::resource('kategoris', KategoriController::class);
+// // ADMIN ROUTES------------------------------------------------------------
+// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+// Route::resource('/admin/bukus', BukuController::class);
+// // Profile
+// Route::get('/admin/profil', [ProfileController::class, 'show'])->name('profile.show');
+// Route::get('/admin/profil/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+// Route::put('/admin/profil', [ProfileController::class, 'update'])->name('profile.update');
 
-// Route::resource('bukus', BukuController::class);
+// // USER ROUTES--------------------------------------------------------------
+// Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+// Route::get('/user/buku/{id}', [UserBukuController::class, 'show'])->name('user.bukus.show');
+// // Profile
+// Route::get('/user/profil', [ProfileController::class, 'show'])->name('user.profil.show');
+// Route::get('/user/profil/{id}/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
+// Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.profil.update');
 
 
 // -------------------
@@ -61,9 +73,8 @@ Route::middleware(['auth', 'checkRole:admin'])->group(function () {
     Route::resource('/admin/bukus', BukuController::class);
 
     // Profile
-         // Tampilkan profil
     Route::get('/admin/profil', [ProfileController::class, 'show'])->name('profile.show');
-    Route::get('/admin/profil/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/admin/profil/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/admin/profil', [ProfileController::class, 'update'])->name('profile.update');
 });
 /*
@@ -78,20 +89,6 @@ Route::middleware(['auth', 'checkRole:user'])->group(function () {
 
     // Profile
     Route::get('/user/profil', [ProfileController::class, 'show'])->name('user.profil.show');
-    Route::get('/user/profil/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
+    Route::get('/user/profil/{id}/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
     Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.profil.update');
 });
-
-//=======
-Route::middleware(['auth', 'checkRole:admin'])->group(function () {
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('bukus', BukuController::class);
-});
-
-// Route::middleware(['auth', 'checkRole:user'])->group(function () {
-//     Route::get('/user/dashboard', [DashboardController::class, 'userIndex'])->name('user.dashboard');
-// });
-
-// Route::get('/dashboard', function () {
-//     return 'Halaman Dashboard';
-// })->middleware('cekrole:admin,user');

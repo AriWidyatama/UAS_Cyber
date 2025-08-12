@@ -7,8 +7,8 @@ app = Flask(__name__)
 # Konfigurasi Laravel endpoint
 LOGIN_FORM_URL = "http://127.0.0.1:8000/"
 LOGIN_URL = "http://127.0.0.1:8000/login"
-FORM_URL = "http://127.0.0.1:8000/bukus/create"
-SUBMIT_URL = "http://127.0.0.1:8000/bukus"
+FORM_URL = "http://127.0.0.1:8000/admin/bukus/create"
+SUBMIT_URL = "http://127.0.0.1:8000/admin/bukus"
 
 # Kredensial login
 USERNAME = "admin"

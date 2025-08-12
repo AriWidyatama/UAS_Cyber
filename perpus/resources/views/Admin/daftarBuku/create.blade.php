@@ -50,6 +50,7 @@
                     <option value="Komik">Komik</option>
                     <option value="Majalah">Majalah</option>
                     <option value="Berita">Berita</option>
+                    <option value="Pendidikan">Pendidikan</option>
                     <option value="Other">Other</option>
                 </select>
             </div>

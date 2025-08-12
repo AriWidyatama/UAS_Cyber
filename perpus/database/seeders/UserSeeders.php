@@ -25,11 +25,27 @@ class UserSeeders extends Seeder
             'image' => null,
         ]);
 
+        User::create([
+            'nama' => 'Administrator Ke 3',
+            'username' => 'admin3',
+            'password' => Hash::make('aab'),
+            'akses' => 'admin',
+            'image' => null,
+        ]);
+
         // User
         User::create([
             'nama' => 'Pengguna Biasa',
             'username' => 'user',
             'password' => Hash::make('user123'),
+            'akses' => 'user',
+            'image' => null,
+        ]);
+
+        User::create([
+            'nama' => 'Pengguna Ke 99',
+            'username' => 'user9',
+            'password' => Hash::make('cr'),
             'akses' => 'user',
             'image' => null,
         ]);

@@ -16,7 +16,9 @@
         <p><strong>Nama:</strong> {{ $user->nama }}</p>
         <p><strong>Username:</strong> {{ $user->username }}</p>
 
-        <a href="{{ route('user.profil.edit') }}" class="btn btn-warning">Edit Profil</a>
+        <!-- route dengan id = route('user.profil.edit', $user->id)
+          route tanpa id = route('user.profil.edit') -->
+        <a href="{{ route('user.profil.edit', $user->id) }}" class="btn btn-warning">Edit Profil</a>
       </div>
     </div>
   </div>
