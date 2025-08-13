@@ -46,8 +46,9 @@ class BukuController extends Controller
     }
 
     // Ambil data + pagination
-    $bukus = $query->latest()->paginate(10);
-    $bukus->appends($request->query());
+    //$bukus = $query->latest()->paginate(10);
+    $bukus = $query->latest()->get();
+    //$bukus->appends($request->query());
 
     // Ambil semua kategori untuk dropdown
     $categories = Buku::distinct()->pluck('category');
@@ -84,7 +85,7 @@ class BukuController extends Controller
             'penulis' => 'required|string|max:255',
             'tahun_terbit' => 'required|integer|min:1900|max:' . date('Y'),
             'jumlah_buku' => 'required|integer|min:1',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'nullable', //|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category' => 'required|string',
             'status' => 'required|in:available,unavailable',
         ]);

@@ -10,13 +10,15 @@ SUBMIT_URL = "http://127.0.0.1:8000/admin/bukus"
 
 # Cookie Laravel (ambil dari browser yang sudah login)
 COOKIES = {
-    'laravel_session': 'eyJpdiI6Ikc2ei9XSktXM0JRWTFuRXd0YlFlT2c9PSIsInZhbHVlIjoiMVZ5VzlCT3RnQXdPeFBRSHZtMDNlN2I1Q0ZNaXY4c25nMFRDS2I2WC9IRWZuNWYxemoxNzg4REtmeGF0ZzdFSEwrZUxML2R2QSs4WXRwcW5aQXVFSW5ScnI0MnE0ZjZrc0dtMVhZR29Ga1V1Y3dEWTlnbGZPOXU4aUpOVjQxdGciLCJtYWMiOiI1MWM5MzM2YzBmNDU5ODU4NmNhZjVkNDNhMGQ5OWVmMTk1ZjhjYWRiOWVlMGY5MzY0YTY3MzljM2Y3YjNlNWNiIiwidGFnIjoiIn0%3D'
+    'laravel_session': 'eyJpdiI6Im5tVkk3UFluTXpncHFpQlRObzg2YVE9PSIsInZhbHVlIjoiRUpJUDFOKy94VVQvRXJwTUY3Wm5lM2U1azdwWE9rZU8yQWVxMFVRbjkybDlxZ3ozd3ZkMUJOQkZsdktublJhanVveDVwRUVsSTF6YitYSEViR05yRHYvY3I5YWlvc2trVU9BS2VWZktJcHMxZ2JnVmNjSHlNTGorTXRLU1ZiaU4iLCJtYWMiOiI4NWZlMThjZTI5ZGFhNjZiOWE1MTI0MjY1NjQ3MDA2MTVhZGM5NGI2MjZiN2Q1MDdiNjk5MGQ5MWVlOWYxMzNhIiwidGFnIjoiIn0%3D'
 }
 
 @app.route("/submit-product", methods=["POST"])
 def submit_product():
     try:
         product_data = request.form.to_dict()
+
+        file_obj = request.files.get("gambar")
 
         # 1. Pakai session dengan cookie
         session = requests.Session()
@@ -31,7 +33,12 @@ def submit_product():
         product_data["_token"] = csrf_token
 
         # 4. Kirim POST ke Laravel
-        laravel_resp = session.post(SUBMIT_URL, data=product_data)
+        files = {}
+        if file_obj:
+            files["gambar"] = (file_obj.filename, file_obj.stream, file_obj.mimetype)
+            laravel_resp = session.post(SUBMIT_URL, data=product_data, files=files)
+        else:
+            laravel_resp = session.post(SUBMIT_URL, data=product_data)
 
         return jsonify({
             "status_code": laravel_resp.status_code,

@@ -15,7 +15,7 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="description" class="form-label">Deskripsi (opsional)</label>
+                <label for="description" class="form-label">Deskripsi</label>
                 <textarea name="description" id="description" class="form-control" rows="4" placeholder="Deskripsi singkat buku">{{ old('description') }}</textarea>
                 @error('description')
                 <div class="text-danger">{{ $message }}</div>

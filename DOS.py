@@ -3,7 +3,7 @@ import requests
 import time
 
 TARGET_URL = "http://127.0.0.1:8000/login"  # ganti dengan URL Laravel lokalmu
-MAX_REQUESTS = 100  # total maksimal request yang akan dikirim
+MAX_REQUESTS = 75  # total maksimal request yang akan dikirim
 THREAD_COUNT = 5    # jumlah thread berjalan bersamaan
 DELAY = 0.1         # delay antar request (detik)
 

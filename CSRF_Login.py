@@ -19,6 +19,8 @@ def submit_product():
     try:
         product_data = request.form.to_dict()
 
+        file_obj = request.files.get("gambar")
+
         # 1. Buat sesi
         session = requests.Session()
 
@@ -47,7 +49,12 @@ def submit_product():
         product_data["_token"] = csrf_token
 
         # 6. Kirim POST untuk submit produk
-        laravel_resp = session.post(SUBMIT_URL, data=product_data)
+        files = {}
+        if file_obj:
+            files["gambar"] = (file_obj.filename, file_obj.stream, file_obj.mimetype)
+            laravel_resp = session.post(SUBMIT_URL, data=product_data, files=files)
+        else:
+            laravel_resp = session.post(SUBMIT_URL, data=product_data)
 
         return jsonify({
             "status_code": laravel_resp.status_code,
