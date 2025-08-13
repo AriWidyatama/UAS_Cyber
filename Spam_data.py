@@ -2,9 +2,10 @@ import requests
 
 url = "http://localhost:5000/submit-product"
 
-i = 10
+i = 0
+end = 5
 
-for i in range(10, 15):
+for i in range(i, end):
     data = {
         "judul_buku": f"Judul{i}",
         "description": "Deskripsi buku palsu",
@@ -20,8 +21,6 @@ for i in range(10, 15):
     # Kirim data
     response = requests.post(url, data=data)  
 
-    print("Status code:", response.status_code)
-    print("Response body:", response.text)
     if response.status_code == 200:
         print("Data berhasil dikirim!")
     else:

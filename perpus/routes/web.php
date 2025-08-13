@@ -43,21 +43,21 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-// // ADMIN ROUTES------------------------------------------------------------
-// Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-// Route::resource('/admin/bukus', BukuController::class);
-// // Profile
-// Route::get('/admin/profil', [ProfileController::class, 'show'])->name('profile.show');
-// Route::get('/admin/profil/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-// Route::put('/admin/profil', [ProfileController::class, 'update'])->name('profile.update');
+// ADMIN ROUTES------------------------------------------------------------
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+Route::resource('/admin/bukus', BukuController::class);
+// Profile
+Route::get('/admin/profil', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/admin/profil/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/admin/profil', [ProfileController::class, 'update'])->name('profile.update');
 
-// // USER ROUTES--------------------------------------------------------------
-// Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
-// Route::get('/user/buku/{id}', [UserBukuController::class, 'show'])->name('user.bukus.show');
-// // Profile
-// Route::get('/user/profil', [ProfileController::class, 'show'])->name('user.profil.show');
-// Route::get('/user/profil/{id}/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
-// Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.profil.update');
+// USER ROUTES--------------------------------------------------------------
+Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+Route::get('/user/buku/{id}', [UserBukuController::class, 'show'])->name('user.bukus.show');
+// Profile
+Route::get('/user/profil', [ProfileController::class, 'show'])->name('user.profil.show');
+Route::get('/user/profil/{id}/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
+Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.profil.update');
 
 
 // -------------------
@@ -68,27 +68,27 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 | ADMIN ROUTES
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth', 'checkRole:admin'])->group(function () {
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::resource('/admin/bukus', BukuController::class);
+// Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+//     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+//     Route::resource('/admin/bukus', BukuController::class);
 
-    // Profile
-    Route::get('/admin/profil', [ProfileController::class, 'show'])->name('profile.show');
-    Route::get('/admin/profil/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/admin/profil', [ProfileController::class, 'update'])->name('profile.update');
-});
-/*
-|--------------------------------------------------------------------------
-| USER ROUTES
-|--------------------------------------------------------------------------
-*/
-Route::middleware(['auth', 'checkRole:user'])->group(function () {
-    Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
-    // Route::get('/user/bukus', [UserBukuController::class, 'index'])->name('user.bukus.index');
-    Route::get('/user/buku/{id}', [UserBukuController::class, 'show'])->name('user.bukus.show');
+//     // Profile
+//     Route::get('/admin/profil', [ProfileController::class, 'show'])->name('profile.show');
+//     Route::get('/admin/profil/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::put('/admin/profil', [ProfileController::class, 'update'])->name('profile.update');
+// });
+// /*
+// |--------------------------------------------------------------------------
+// | USER ROUTES
+// |--------------------------------------------------------------------------
+// */
+// Route::middleware(['auth', 'checkRole:user'])->group(function () {
+//     Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+//     // Route::get('/user/bukus', [UserBukuController::class, 'index'])->name('user.bukus.index');
+//     Route::get('/user/buku/{id}', [UserBukuController::class, 'show'])->name('user.bukus.show');
 
-    // Profile
-    Route::get('/user/profil', [ProfileController::class, 'show'])->name('user.profil.show');
-    Route::get('/user/profil/{id}/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
-    Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.profil.update');
-});
+//     // Profile
+//     Route::get('/user/profil', [ProfileController::class, 'show'])->name('user.profil.show');
+//     Route::get('/user/profil/{id}/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
+//     Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.profil.update');
+// });
