@@ -74,7 +74,8 @@ Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.pro
 
 //     // Profile
 //     Route::get('/admin/profil', [ProfileController::class, 'show'])->name('profile.show');
-//     Route::get('/admin/profil/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+//     //Route::get('/admin/profil/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::get('/admin/profil/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 //     Route::put('/admin/profil', [ProfileController::class, 'update'])->name('profile.update');
 // });
 // /*
@@ -89,6 +90,7 @@ Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.pro
 
 //     // Profile
 //     Route::get('/user/profil', [ProfileController::class, 'show'])->name('user.profil.show');
-//     Route::get('/user/profil/{id}/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
+//     //Route::get('/user/profil/{id}/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
+//     Route::get('/user/profil/edit', [ProfileController::class, 'edit'])->name('user.profil.edit');
 //     Route::put('/user/profil', [ProfileController::class, 'update'])->name('user.profil.update');
 // });
