@@ -4,7 +4,7 @@
 
 ## Clone Project
 - Pindahkan terminal atau CMD ke folder yang diinginkan
-- Clone project dengan perintah `git clone https://github.com/AriWidyatama/UAS_Cyber.git`
+- Clone project dengan perintah `git clone https://github.com/AriWidyatama/Simulasi_Cyber_Web.git`
 
 ## Siapkan Project Laravel
 - Masuk ke directory laraver dengan menggunakan `cd .\perpus`
